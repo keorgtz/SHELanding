@@ -108,11 +108,23 @@ img { max-width: 100%; height: auto; }
   background: radial-gradient(circle, rgba(59,130,246,.35), transparent 70%);
   filter: blur(32px);
 }
-.hero-icon-img {
+/* Este es el contenedor que forma el círculo y tiene la sombra */
+.hero-icon-container {
   position: relative;
   z-index: 10;
   border-radius: 50%;
   box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 0 4px rgba(255,255,255,.1);
+  overflow: hidden; /* Esto recorta lo que se salga del círculo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Esta es la imagen real, le hacemos zoom superando el 100% */
+.hero-icon-inner {
+  width: 105%; /* Aumenta o disminuye este porcentaje para acercar/alejar el logo */
+  height: 105%;
+  object-fit: cover;
 }
 
 /* ─── Marco de aplicación (app window) ─────────────────────── */
@@ -353,7 +365,8 @@ img { max-width: 100%; height: auto; }
 
 /* ── Mobile (≤ 640px) ── */
 @media (max-width: 640px) {
-  .hero-icon-img { width: 160px !important; height: 160px !important; }
+  /* Cambiamos .hero-icon-img por .hero-icon-container */
+  .hero-icon-container { width: 160px !important; height: 160px !important; }
   .hero-icon-ring:nth-child(1) { width: 200px !important; height: 200px !important; }
   .hero-icon-ring:nth-child(2) { width: 260px !important; height: 260px !important; }
   .hero-icon-glow { width: 220px !important; height: 220px !important; }
@@ -363,5 +376,6 @@ img { max-width: 100%; height: auto; }
 
 /* ── Tablet (641–1023px) ── */
 @media (min-width: 641px) and (max-width: 1023px) {
-  .hero-icon-img { width: 200px !important; height: 200px !important; }
+  /* Cambiamos .hero-icon-img por .hero-icon-container */
+  .hero-icon-container { width: 200px !important; height: 200px !important; }
 }
