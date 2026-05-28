@@ -1,0 +1,367 @@
+/* ════════════════════════════════════════════════════════════
+   Endevour PMS Landing — MeridianUI Tokens + Landing Styles
+   ════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Colores semánticos MeridianUI ── */
+  --em:      #10B981; --em-pl: #DCFCE7; --em-bg: #F0FDF4;
+  --am:      #F59E0B; --am-pl: #FEF3C7; --am-bg: #FFFBEB;
+  --in:      #6366F1; --in-pl: #E0E7FF; --in-bg: #EEF2FF;
+  --vi:      #8B5CF6; --vi-pl: #EDE9FE; --vi-bg: #F5F3FF;
+  --or:      #F97316; --or-pl: #FFEDD5; --or-bg: #FFF7ED;
+
+  /* ── Keorsoft Brand Blues ── */
+  --kr-blue:      #0E98F8;
+  --kr-blue-mid:  #51B1FB;
+  --kr-blue-pale: #C3D9F0;
+
+  /* ── Primary de acción ── */
+  --primary:      #1976D2;
+  --primary-dark: #1565C0;
+
+  /* ── Neutros ── */
+  --gray-dark:  #1C1E26;
+  --gray-700:   #374151;
+  --gray-muted: #6B7280;
+  --gray-line:  #E5E7EB;
+  --page-bg:    #F2F3F7;
+  --white:      #FFFFFF;
+
+  /* ── Sombras MeridianUI ── */
+  --shadow:   0 1px 4px rgba(0,0,0,.08), 0 0 0 .5px rgba(0,0,0,.06);
+  --shadow-2: 0 2px 6px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.12);
+  --shadow-3: 0 4px 16px rgba(0,0,0,.16);
+
+  /* ── Radios ── */
+  --r-sm:   6px;
+  --r-md:   10px;
+  --r-lg:   14px;
+  --r-xl:   20px;
+  --r-full: 999px;
+
+  /* ── Transiciones ── */
+  --t-base: 150ms ease;
+  --t-slow: 200ms ease-in-out;
+
+  /* ── Fuentes ── */
+  --font:         'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+/* ─── Base ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* ─── Navegación ────────────────────────────────────────────── */
+.nav-glass {
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ─── Material Symbols Rounded ──────────────────────────────── */
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded' !important;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+.material-symbols-rounded.fill {
+  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ─── Gradiente hero ─────────────────────────────────────────── */
+.gradient-hero {
+  background: linear-gradient(140deg, #0f172a 0%, #1e3a8a 60%, #1e40af 100%);
+}
+
+/* ─── Ícono hero ─────────────────────────────────────────────── */
+.hero-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-icon-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.hero-icon-glow {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,130,246,.35), transparent 70%);
+  filter: blur(32px);
+}
+.hero-icon-img {
+  position: relative;
+  z-index: 10;
+  border-radius: 50%;
+  box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 0 4px rgba(255,255,255,.1);
+}
+
+/* ─── Marco de aplicación (app window) ─────────────────────── */
+.app-frame {
+  background: #1e293b;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.07);
+}
+.app-frame-bar {
+  background: #0f172a;
+  padding: 11px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  flex-shrink: 0;
+}
+.frame-dot {
+  width: 11px; height: 11px;
+  border-radius: 50%; flex-shrink: 0;
+}
+.frame-dot.rd { background: #FF5F57; }
+.frame-dot.am { background: #FEBC2E; }
+.frame-dot.gn { background: #28C840; }
+.app-frame-title {
+  font-size: 12px; font-weight: 500;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .03em;
+  flex: 1; text-align: center;
+}
+.app-frame img { display: block; width: 100%; height: auto; }
+
+/* ─── Tabs de galería ────────────────────────────────────────── */
+.tabs-scroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 4px;
+}
+.tabs-scroll::-webkit-scrollbar { display: none; }
+.tabs-inner {
+  display: flex;
+  gap: 8px;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.screen-tab {
+  padding: 7px 15px;
+  border-radius: var(--r-md);
+  font-size: 13px; font-weight: 600;
+  color: var(--gray-muted);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all var(--t-base);
+  white-space: nowrap;
+  background: transparent;
+  outline: none;
+  font-family: var(--font);
+}
+.screen-tab:hover { background: var(--in-bg); color: var(--in); }
+.screen-tab.active {
+  background: var(--in-bg); color: var(--in);
+  border-color: var(--in-pl);
+}
+
+/* ─── Panel de pantalla ──────────────────────────────────────── */
+.screen-panel { display: none; }
+.screen-panel.active { display: block; }
+
+/* ─── Tarjetas de módulo ─────────────────────────────────────── */
+.module-card {
+  background: var(--white);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--t-base);
+}
+.module-card:hover { box-shadow: var(--shadow-2); }
+
+/* ─── Badge "NUEVO" ──────────────────────────────────────────── */
+.badge-new {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px;
+  background: var(--em-bg); color: var(--em);
+  border-radius: var(--r-full);
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .09em;
+  font-family: var(--font);
+}
+
+/* ─── Sección label ──────────────────────────────────────────── */
+.section-label {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .10em;
+  color: var(--in); font-family: var(--font);
+}
+.section-label.em { color: var(--em); }
+.section-label.am { color: var(--am); }
+.section-label.or { color: var(--or); }
+
+/* ─── Pantallas restaurante ──────────────────────────────────── */
+.rest-screen {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-3);
+  cursor: pointer;
+}
+.rest-screen img {
+  display: block; width: 100%; height: auto;
+  transition: transform 300ms ease;
+}
+.rest-screen:hover img { transform: scale(1.03); }
+
+/* ─── Modal de imagen ────────────────────────────────────────── */
+.img-modal {
+  display: none;
+  position: fixed; inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.img-modal.open { display: flex; }
+
+.img-modal-inner {
+  position: relative;
+  max-width: min(960px, 95vw);
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(0,0,0,.6);
+  background: #0f172a;
+}
+.img-modal-inner img {
+  display: block; width: 100%; height: auto;
+  max-height: calc(100vh - 140px);
+  object-fit: contain;
+}
+.img-modal-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 16px;
+  background: #0f172a;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+.img-modal-bar p {
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,.75);
+  font-family: var(--font);
+}
+.img-modal-bar span.sub {
+  font-size: 11px; font-weight: 400;
+  color: rgba(255,255,255,.4);
+  margin-left: 10px;
+  font-family: var(--font);
+}
+.img-modal-close {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: white; transition: background var(--t-base);
+  flex-shrink: 0;
+}
+.img-modal-close:hover { background: rgba(255,255,255,.2); }
+
+/* ─── Chip de feature ────────────────────────────────────────── */
+.feature-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: var(--r-md);
+  font-size: 12px; font-weight: 500;
+  color: rgba(255,255,255,.85);
+  font-family: var(--font);
+}
+
+/* ─── Stat card ──────────────────────────────────────────────── */
+.stat-card {
+  background: var(--white);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow);
+  padding: 22px 18px;
+  text-align: center;
+}
+
+/* ─── Tech chip ──────────────────────────────────────────────── */
+.tech-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--r-md);
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,.80);
+  font-family: var(--font);
+}
+
+/* ─── Menú móvil ─────────────────────────────────────────────── */
+.mobile-menu {
+  display: none;
+  position: fixed; top: 80px; left: 0; right: 0;
+  z-index: 49;
+  background: rgba(255,255,255,.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--gray-line);
+  padding: 12px 16px 16px;
+}
+.mobile-menu.open { display: block; }
+.mobile-nav-link {
+  display: flex; align-items: center;
+  padding: 11px 14px;
+  border-radius: var(--r-md);
+  font-size: 14px; font-weight: 600;
+  color: var(--gray-700);
+  text-decoration: none;
+  transition: background var(--t-base), color var(--t-base);
+  font-family: var(--font);
+}
+.mobile-nav-link:hover { background: var(--in-bg); color: var(--in); }
+
+/* ─── Botón "ir arriba" ──────────────────────────────────────── */
+#toTopBtn { transition: all var(--t-slow); }
+
+/* ─── Scrollbar (webkit) ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--gray-line); border-radius: 3px; }
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE OVERRIDES
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Mobile (≤ 640px) ── */
+@media (max-width: 640px) {
+  .hero-icon-img { width: 160px !important; height: 160px !important; }
+  .hero-icon-ring:nth-child(1) { width: 200px !important; height: 200px !important; }
+  .hero-icon-ring:nth-child(2) { width: 260px !important; height: 260px !important; }
+  .hero-icon-glow { width: 220px !important; height: 220px !important; }
+  .tabs-inner { margin: 0; }
+  .img-modal-inner img { max-height: 60vh; }
+}
+
+/* ── Tablet (641–1023px) ── */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .hero-icon-img { width: 200px !important; height: 200px !important; }
+}

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endevour PMS — Sistema de Gestión Hotelera Integral</title>
+    <link rel="icon" type="image/png" href="Assets/Endevour-Icon.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- MeridianUI: Inter + Plus Jakarta Sans + Material Symbols Rounded -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet">
+
+    <!-- FontAwesome (WhatsApp) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="css/Styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+<!-- ══ BOTÓN IR ARRIBA ══════════════════════════════════════════ -->
+<button id="toTopBtn" class="fixed bottom-6 right-6 z-[60] bg-blue-600 text-white w-12 h-12 rounded-2xl shadow-2xl flex items-center justify-center translate-y-20 opacity-0 hover:bg-blue-700">
+    <span class="material-symbols-rounded fill" style="font-size:22px">arrow_upward</span>
+</button>
+
+<!-- ══ MENÚ MÓVIL ═══════════════════════════════════════════════ -->
+<div id="mobileMenu" class="mobile-menu">
+    <a href="#inicio"      class="mobile-nav-link" onclick="closeMobileMenu()">
+        <span class="material-symbols-rounded fill mr-3" style="font-size:18px;color:var(--in)">home</span>Inicio
+    </a>
+    <a href="#soluciones"  class="mobile-nav-link" onclick="closeMobileMenu()">
+        <span class="material-symbols-rounded fill mr-3" style="font-size:18px;color:var(--in)">apps</span>Módulos
+    </a>
+    <a href="#sistema"     class="mobile-nav-link" onclick="closeMobileMenu()">
+        <span class="material-symbols-rounded fill mr-3" style="font-size:18px;color:var(--in)">play_circle</span>Sistema
+    </a>
+    <a href="#restaurante" class="mobile-nav-link" onclick="closeMobileMenu()">
+        <span class="material-symbols-rounded fill mr-3" style="font-size:18px;color:var(--or)">restaurant</span>Restaurante
+    </a>
+    <a href="#nosotros"    class="mobile-nav-link" onclick="closeMobileMenu()">
+        <span class="material-symbols-rounded fill mr-3" style="font-size:18px;color:var(--in)">info</span>Nosotros
+    </a>
+    <div class="mt-3 pt-3 border-t border-slate-200">
+        <a href="#contacto" onclick="closeMobileMenu()" class="flex items-center justify-center gap-2 w-full bg-blue-600 text-white py-3 rounded-xl font-bold text-sm uppercase tracking-wide" style="font-family:var(--font)">
+            <span class="material-symbols-rounded fill" style="font-size:17px">chat</span>
+            Contactar
+        </a>
+    </div>
+</div>
+
+<!-- ══ NAVEGACIÓN ═══════════════════════════════════════════════ -->
+<nav class="fixed w-full z-50 nav-glass border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+
+            <!-- Logo -->
+            <div class="flex items-center gap-2.5">
+                <img src="Assets/Endevour-Icon.png" alt="Endevour" class="w-9 h-9 rounded-full shadow-md">
+                <span class="text-lg sm:text-xl font-extrabold tracking-tighter text-slate-900 uppercase" style="font-family:var(--font-display)">
+                    ENDEVØUR <span class="text-blue-600">PMS</span>
+                </span>
+            </div>
+
+            <!-- Links desktop -->
+            <div class="hidden md:flex items-center gap-6 lg:gap-7 font-semibold text-slate-600 text-sm" style="font-family:var(--font)">
+                <a href="#inicio"      class="hover:text-blue-600 transition-colors duration-150">Inicio</a>
+                <a href="#soluciones"  class="hover:text-blue-600 transition-colors duration-150">Módulos</a>
+                <a href="#sistema"     class="hover:text-blue-600 transition-colors duration-150">Sistema</a>
+                <a href="#restaurante" class="hover:text-blue-600 transition-colors duration-150">Restaurante</a>
+                <a href="#nosotros"    class="hover:text-blue-600 transition-colors duration-150">Nosotros</a>
+            </div>
+
+            <!-- CTA desktop + hamburguesa móvil -->
+            <div class="flex items-center gap-3">
+                <a href="#contacto" class="hidden sm:inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold hover:bg-blue-700 transition-colors duration-150 shadow-lg shadow-blue-200 text-sm uppercase tracking-wide" style="font-family:var(--font)">
+                    Contactar
+                </a>
+                <button id="menuBtn" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors duration-150" aria-label="Menú">
+                    <span class="material-symbols-rounded" id="menuIcon" style="font-size:24px">menu</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<!-- ══ HERO ═════════════════════════════════════════════════════ -->
+<section id="inicio" class="pt-32 pb-16 lg:pt-44 lg:pb-28 gradient-hero text-white relative overflow-hidden">
+    <!-- Destellos de fondo -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-96 h-96 rounded-full opacity-20" style="background:radial-gradient(circle,#3b82f6,transparent 70%)"></div>
+        <div class="absolute -bottom-20 right-10 w-80 h-80 rounded-full opacity-15" style="background:radial-gradient(circle,#6366f1,transparent 70%)"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+
+            <!-- Copy -->
+            <div class="text-center lg:text-left">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-500/20 text-blue-300 rounded-full text-xs font-bold mb-6 tracking-widest border border-blue-500/25 uppercase" style="font-family:var(--font)">
+                    <span class="material-symbols-rounded fill" style="font-size:14px">hotel</span>
+                    Sistema de Gestión Hotelera
+                </span>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold leading-[1.08] mb-6 tracking-tight" style="font-family:var(--font-display)">
+                    La potencia que tu <span class="text-blue-400">operación</span> necesita.
+                </h1>
+                <p class="text-base sm:text-lg text-slate-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0" style="font-family:var(--font)">
+                    Endevour PMS es el ecosistema integral que elimina procesos manuales y errores humanos. Control total de tu hotel — desde la recepción hasta el restaurante — en una sola plataforma.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                    <a href="#contacto" class="flex items-center justify-center gap-2.5 bg-white text-blue-900 px-7 py-4 rounded-2xl font-bold hover:bg-blue-50 transition-colors duration-150 shadow-xl text-sm" style="font-family:var(--font)">
+                        <i class="fa-brands fa-whatsapp text-xl text-green-500"></i>
+                        Hablar con un Experto
+                    </a>
+                    <a href="#sistema" class="flex items-center justify-center gap-2 bg-white/10 border border-white/15 text-white px-7 py-4 rounded-2xl font-bold hover:bg-white/15 transition-colors duration-150 text-sm" style="font-family:var(--font)">
+                        <span class="material-symbols-rounded" style="font-size:18px">play_circle</span>
+                        Ver el sistema
+                    </a>
+                </div>
+            </div>
+
+            <!-- Ícono Endevour — visible en todos los tamaños -->
+            <div class="flex justify-center mt-6 lg:mt-0">
+                <div class="hero-icon-wrap" style="width:320px;height:320px">
+                    <!-- Glow -->
+                    <div class="hero-icon-glow" style="width:280px;height:280px"></div>
+                    <!-- Anillos decorativos -->
+                    <div class="hero-icon-ring" style="width:300px;height:300px"></div>
+                    <div class="hero-icon-ring" style="width:360px;height:360px;border-color:rgba(255,255,255,.04)"></div>
+                    <!-- Ícono -->
+                    <img src="Assets/Endevour-Icon.png"
+                         alt="Endevour PMS"
+                         class="hero-icon-img"
+                         style="width:220px;height:220px;object-fit:cover;">
+                    <!-- Badge flotante izq -->
+                    <div class="absolute -bottom-2 -left-6 bg-white rounded-2xl shadow-2xl px-3 py-2.5 flex items-center gap-2.5 z-20" style="box-shadow:var(--shadow-3)">
+                        <span class="material-symbols-rounded fill text-green-500" style="font-size:20px">check_circle</span>
+                        <div>
+                            <p class="text-xs font-bold text-slate-800 leading-none mb-0.5" style="font-family:var(--font)">Sistema activo</p>
+                            <p class="text-xs text-slate-400 leading-none" style="font-family:var(--font)">Tiempo real</p>
+                        </div>
+                    </div>
+                    <!-- Badge flotante der -->
+                    <div class="absolute -top-2 -right-6 bg-white rounded-2xl shadow-2xl px-3 py-2.5 flex items-center gap-2.5 z-20" style="box-shadow:var(--shadow-3)">
+                        <span class="material-symbols-rounded fill text-blue-500" style="font-size:20px">stacks</span>
+                        <div>
+                            <p class="text-xs font-bold text-slate-800 leading-none mb-0.5" style="font-family:var(--font)">10+ módulos</p>
+                            <p class="text-xs text-slate-400 leading-none" style="font-family:var(--font)">Integrados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ══ STATS STRIP ══════════════════════════════════════════════ -->
+<section class="py-12 bg-white border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <div class="stat-card">
+                <p class="text-2xl sm:text-3xl font-extrabold text-blue-600 mb-1" style="font-family:var(--font-display)">10+</p>
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-400" style="font-family:var(--font)">Módulos integrados</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="flex items-center justify-center gap-2 mb-1">
+                    <span class="material-symbols-rounded fill text-indigo-500" style="font-size:22px">stacks</span>
+                    <p class="text-base sm:text-xl font-extrabold text-slate-900" style="font-family:var(--font-display)">Multi-Propiedad</p>
+                </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-400" style="font-family:var(--font)">Hoteles centralizados</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="flex items-center justify-center gap-2 mb-1">
+                    <span class="material-symbols-rounded fill text-emerald-500" style="font-size:22px">bolt</span>
+                    <p class="text-base sm:text-xl font-extrabold text-slate-900" style="font-family:var(--font-display)">Tiempo Real</p>
+                </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-400" style="font-family:var(--font)">Sincronización instantánea</p>
+            </div>
+
+            <div class="stat-card">
+                <div class="flex items-center justify-center gap-2 mb-1">
+                    <span class="material-symbols-rounded fill text-amber-500" style="font-size:22px">support_agent</span>
+                    <p class="text-base sm:text-xl font-extrabold text-slate-900" style="font-family:var(--font-display)">Soporte Dedicado</p>
+                </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-400" style="font-family:var(--font)">Acompañamiento continuo</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ══ MÓDULOS ══════════════════════════════════════════════════ -->
+<section id="soluciones" class="py-20 sm:py-28 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+            <p class="section-label mb-3">Ecosistema hotelero</p>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-5 tracking-tight" style="font-family:var(--font-display)">Módulos que resuelven cada área</h2>
+            <p class="text-slate-500 text-sm sm:text-base leading-relaxed" style="font-family:var(--font)">Tecnología modular y configurable para profesionalizar cada proceso de tu propiedad.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+
+            <div class="module-card p-6 sm:p-7">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5" style="background:var(--in-bg);color:var(--in)">
+                    <span class="material-symbols-rounded fill" style="font-size:22px">bar_chart</span>
+                </div>
+                <h3 class="text-sm sm:text-base font-bold mb-2 text-slate-900" style="font-family:var(--font)">Inteligencia de Negocios</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed" style="font-family:var(--font)">Dashboards ejecutivos con métricas en tiempo real para toma de decisiones estratégica.</p>
+            </div>
+
+            <div class="module-card p-6 sm:p-7">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5" style="background:var(--em-bg);color:var(--em)">
+                    <span class="material-symbols-rounded fill" style="font-size:22px">account_balance_wallet</span>
+                </div>
+                <h3 class="text-sm sm:text-base font-bold mb-2 text-slate-900" style="font-family:var(--font)">Cuenta Centralizada</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed" style="font-family:var(--font)">Sincronización financiera del huésped desde la reserva, eliminando errores de cierre.</p>
+            </div>
+
+            <div class="module-card p-6 sm:p-7">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5" style="background:var(--vi-bg);color:var(--vi)">
+                    <span class="material-symbols-rounded fill" style="font-size:22px">verified_user</span>
+                </div>
+                <h3 class="text-sm sm:text-base font-bold mb-2 text-slate-900" style="font-family:var(--font)">Gestión de Permisos</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed" style="font-family:var(--font)">Define accesos específicos por roles — Recepción, Gerencia, Auditoría — desde una estructura centralizada.</p>
+            </div>
+
+            <div class="module-card p-6 sm:p-7">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5" style="background:var(--em-bg);color:var(--em)">
+                    <span class="material-symbols-rounded fill" style="font-size:22px">receipt_long</span>
+                </div>
+                <h3 class="text-sm sm:text-base font-bold mb-2 text-slate-900" style="font-family:var(--font)">Facturación CFDI</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed" style="font-family:var(--font)">Genera, timbra y administra facturación electrónica CFDI de forma directa y automatizada.</p>
+            </div>
+
+            <div class="module-card p-6 sm:p-7">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5" style="background:var(--in-bg);color:var(--in)">
+                    <span class="material-symbols-rounded fill" style="font-size:22px">stacks</span>
+                </div>
+                <h3 class="text-sm sm:text-base font-bold mb-2 text-slate-900" style="font-family:var(--font)">Multi-Propiedad</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed" style="font-family:var(--font)">Administra múltiples hoteles desde una sola plataforma con visibilidad centralizada y operación independiente.</p>
+            </div>
+
+            <div class="module-card p-6 sm:p-7">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5" style="background:var(--am-bg);color:var(--am)">
+                    <span class="material-symbols-rounded fill" style="font-size:22px">calendar_month</span>
+                </div>
+                <h3 class="text-sm sm:text-base font-bold mb-2 text-slate-900" style="font-family:var(--font)">Motor de Reservas</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed" style="font-family:var(--font)">Control de disponibilidad y reservas desde múltiples terminales con sincronización instantánea.</p>
+            </div>
+
+            <div class="module-card p-6 sm:p-7">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5" style="background:var(--in-bg);color:var(--in)">
+                    <span class="material-symbols-rounded fill" style="font-size:22px">grid_view</span>
+                </div>
+                <h3 class="text-sm sm:text-base font-bold mb-2 text-slate-900" style="font-family:var(--font)">Rack de Habitaciones</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed" style="font-family:var(--font)">Visualización arquitectónica de tu hotel para supervisar estatus, ocupación y movimientos al instante.</p>
+            </div>
+
+            <div class="module-card p-6 sm:p-7">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5" style="background:var(--am-bg);color:var(--am)">
+                    <span class="material-symbols-rounded fill" style="font-size:22px">view_timeline</span>
+                </div>
+                <h3 class="text-sm sm:text-base font-bold mb-2 text-slate-900" style="font-family:var(--font)">Cronograma Operativo</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed" style="font-family:var(--font)">Planificador centralizado para supervisar toda la operación de hospedaje y movimientos diarios.</p>
+            </div>
+
+            <div class="module-card p-6 sm:p-7">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5" style="background:var(--vi-bg);color:var(--vi)">
+                    <span class="material-symbols-rounded fill" style="font-size:22px">summarize</span>
+                </div>
+                <h3 class="text-sm sm:text-base font-bold mb-2 text-slate-900" style="font-family:var(--font)">Reportes y Tickets</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed" style="font-family:var(--font)">Diseñador integrado para crear reportes y tickets personalizados adaptados a tus procesos operativos.</p>
+            </div>
+
+            <!-- Restaurante — NUEVO -->
+            <div class="p-6 sm:p-7 rounded-[20px] text-white relative overflow-hidden" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);box-shadow:var(--shadow-2)">
+                <div class="absolute top-4 right-4">
+                    <span class="badge-new">
+                        <span class="material-symbols-rounded fill" style="font-size:11px;color:var(--em)">new_releases</span>
+                        Nuevo
+                    </span>
+                </div>
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5" style="background:rgba(16,185,129,.15);color:#34d399">
+                    <span class="material-symbols-rounded fill" style="font-size:22px">restaurant</span>
+                </div>
+                <h3 class="text-sm sm:text-base font-bold mb-2" style="font-family:var(--font)">Módulo de Restaurante</h3>
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed" style="font-family:var(--font)">Rack de mesas, gestión de comandas, pagos integrados y cuenta centralizada con el hotel.</p>
+                <a href="#restaurante" class="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-blue-300 hover:text-white transition-colors duration-150" style="font-family:var(--font)">
+                    Ver módulo completo
+                    <span class="material-symbols-rounded" style="font-size:14px">arrow_forward</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ══ GALERÍA DEL SISTEMA ═══════════════════════════════════════ -->
+<section id="sistema" class="py-20 sm:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+            <p class="section-label mb-3">Vista del sistema</p>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 mb-5 tracking-tight" style="font-family:var(--font-display)">El sistema, en acción</h2>
+            <p class="text-slate-500 text-sm sm:text-base leading-relaxed" style="font-family:var(--font)">Cada pantalla está diseñada para maximizar la eficiencia operativa de tu equipo.</p>
+        </div>
+
+        <!-- Tabs — scrollable horizontalmente en móvil -->
+        <div class="tabs-scroll mb-6 sm:mb-8">
+            <div class="tabs-inner">
+                <button class="screen-tab active" data-tab="dash">
+                    <span class="material-symbols-rounded" style="font-size:14px;margin-right:5px;vertical-align:middle">bar_chart</span>
+                    Inteligencia de Negocios
+                </button>
+                <button class="screen-tab" data-tab="rack">
+                    <span class="material-symbols-rounded" style="font-size:14px;margin-right:5px;vertical-align:middle">grid_view</span>
+                    Rack de Habitaciones
+                </button>
+                <button class="screen-tab" data-tab="crono">
+                    <span class="material-symbols-rounded" style="font-size:14px;margin-right:5px;vertical-align:middle">view_timeline</span>
+                    Cronograma Operativo
+                </button>
+                <button class="screen-tab" data-tab="cuenta">
+                    <span class="material-symbols-rounded" style="font-size:14px;margin-right:5px;vertical-align:middle">account_balance_wallet</span>
+                    Cuenta Centralizada
+                </button>
+            </div>
+        </div>
+
+        <!-- Pantalla activa -->
+        <div class="max-w-5xl mx-auto">
+
+            <div class="screen-panel active" data-panel="dash">
+                <div class="app-frame">
+                    <div class="app-frame-bar">
+                        <div class="flex gap-1.5"><span class="frame-dot rd"></span><span class="frame-dot am"></span><span class="frame-dot gn"></span></div>
+                        <span class="app-frame-title">SHEndevour PMS — Inteligencia de Negocios</span>
+                        <div style="width:52px"></div>
+                    </div>
+                    <img src="Assets/Inteligencia%20de%20Negocios.png" alt="Dashboard de Inteligencia de Negocios">
+                </div>
+                <div class="mt-4 flex items-start gap-2.5 px-1">
+                    <span class="material-symbols-rounded fill mt-0.5 flex-shrink-0" style="font-size:17px;color:var(--in)">info</span>
+                    <p class="text-xs sm:text-sm text-slate-500 leading-relaxed" style="font-family:var(--font)"><strong class="text-slate-700">Inteligencia de Negocios.</strong> Dashboards ejecutivos con métricas clave de ocupación, ingresos, llegadas y salidas en tiempo real.</p>
+                </div>
+            </div>
+
+            <div class="screen-panel" data-panel="rack">
+                <div class="app-frame">
+                    <div class="app-frame-bar">
+                        <div class="flex gap-1.5"><span class="frame-dot rd"></span><span class="frame-dot am"></span><span class="frame-dot gn"></span></div>
+                        <span class="app-frame-title">SHEndevour PMS — Rack de Habitaciones</span>
+                        <div style="width:52px"></div>
+                    </div>
+                    <img src="Assets/Rack%20Habitaciones%20Hotel.png" alt="Rack de Habitaciones del Hotel">
+                </div>
+                <div class="mt-4 flex items-start gap-2.5 px-1">
+                    <span class="material-symbols-rounded fill mt-0.5 flex-shrink-0" style="font-size:17px;color:var(--in)">info</span>
+                    <p class="text-xs sm:text-sm text-slate-500 leading-relaxed" style="font-family:var(--font)"><strong class="text-slate-700">Rack de Habitaciones.</strong> Diseño visual que replica la arquitectura de tu hotel. Supervisa el estatus de cada habitación al instante.</p>
+                </div>
+            </div>
+
+            <div class="screen-panel" data-panel="crono">
+                <div class="app-frame">
+                    <div class="app-frame-bar">
+                        <div class="flex gap-1.5"><span class="frame-dot rd"></span><span class="frame-dot am"></span><span class="frame-dot gn"></span></div>
+                        <span class="app-frame-title">SHEndevour PMS — Cronograma Operativo</span>
+                        <div style="width:52px"></div>
+                    </div>
+                    <img src="Assets/Cronograma%20Operativo.png" alt="Cronograma Operativo">
+                </div>
+                <div class="mt-4 flex items-start gap-2.5 px-1">
+                    <span class="material-symbols-rounded fill mt-0.5 flex-shrink-0" style="font-size:17px;color:var(--am)">info</span>
+                    <p class="text-xs sm:text-sm text-slate-500 leading-relaxed" style="font-family:var(--font)"><strong class="text-slate-700">Cronograma Operativo.</strong> Vista de línea de tiempo con llegadas, salidas y movimientos del turno completo de un vistazo.</p>
+                </div>
+            </div>
+
+            <div class="screen-panel" data-panel="cuenta">
+                <div class="app-frame">
+                    <div class="app-frame-bar">
+                        <div class="flex gap-1.5"><span class="frame-dot rd"></span><span class="frame-dot am"></span><span class="frame-dot gn"></span></div>
+                        <span class="app-frame-title">SHEndevour PMS — Cuenta Centralizada</span>
+                        <div style="width:52px"></div>
+                    </div>
+                    <img src="Assets/Cuenta%20Centralizada%20Hotel.png" alt="Cuenta Centralizada del Hotel">
+                </div>
+                <div class="mt-4 flex items-start gap-2.5 px-1">
+                    <span class="material-symbols-rounded fill mt-0.5 flex-shrink-0" style="font-size:17px;color:var(--em)">info</span>
+                    <p class="text-xs sm:text-sm text-slate-500 leading-relaxed" style="font-family:var(--font)"><strong class="text-slate-700">Cuenta Centralizada Hotel.</strong> Estado de cuenta del huésped con todos sus cargos, abonos y servicios consolidados sin discrepancias.</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<!-- ══ MÓDULO RESTAURANTE — NUEVO ═══════════════════════════════ -->
+<section id="restaurante" class="py-20 sm:py-28 relative overflow-hidden" style="background:linear-gradient(140deg,#0f172a 0%,#1e3a8a 65%,#1e40af 100%)">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10" style="background:radial-gradient(circle,#10b981,transparent 70%)"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+            <!-- Copy -->
+            <div class="pt-2">
+                <span class="badge-new mb-4 inline-flex">
+                    <span class="material-symbols-rounded fill" style="font-size:11px;color:var(--em)">new_releases</span>
+                    Nueva funcionalidad
+                </span>
+                <p class="section-label or mb-3">Módulo de Restaurante</p>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5 leading-[1.1] tracking-tight" style="font-family:var(--font-display)">
+                    El restaurante de tu hotel, integrado al sistema.
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-7" style="font-family:var(--font)">
+                    Endevour ahora incluye un módulo completo de punto de venta para restaurante, totalmente integrado con la cuenta del huésped y la operación del hotel.
+                </p>
+
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-rounded fill mt-0.5 flex-shrink-0" style="font-size:20px;color:#34d399">table_restaurant</span>
+                        <div>
+                            <p class="text-white font-semibold text-sm mb-0.5" style="font-family:var(--font)">Rack de Mesas</p>
+                            <p class="text-slate-400 text-xs sm:text-sm" style="font-family:var(--font)">Diseño visual de tu restaurante con estatus en tiempo real de cada mesa.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-rounded fill mt-0.5 flex-shrink-0" style="font-size:20px;color:#34d399">receipt</span>
+                        <div>
+                            <p class="text-white font-semibold text-sm mb-0.5" style="font-family:var(--font)">Gestión de Comandas</p>
+                            <p class="text-slate-400 text-xs sm:text-sm" style="font-family:var(--font)">Panel táctil para captura rápida de pedidos por mesa o por mesa-habitación.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-rounded fill mt-0.5 flex-shrink-0" style="font-size:20px;color:#34d399">payments</span>
+                        <div>
+                            <p class="text-white font-semibold text-sm mb-0.5" style="font-family:var(--font)">Pagos Integrados</p>
+                            <p class="text-slate-400 text-xs sm:text-sm" style="font-family:var(--font)">Cobro en efectivo, tarjeta o cargo directo a la cuenta del huésped.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-rounded fill mt-0.5 flex-shrink-0" style="font-size:20px;color:#34d399">account_balance_wallet</span>
+                        <div>
+                            <p class="text-white font-semibold text-sm mb-0.5" style="font-family:var(--font)">Cuenta Centralizada</p>
+                            <p class="text-slate-400 text-xs sm:text-sm" style="font-family:var(--font)">Los consumos del restaurante se reflejan automáticamente en la cuenta del huésped.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                    <span class="feature-chip"><span class="material-symbols-rounded" style="font-size:14px">bolt</span>Tiempo real</span>
+                    <span class="feature-chip"><span class="material-symbols-rounded" style="font-size:14px">link</span>Integrado al PMS</span>
+                    <span class="feature-chip"><span class="material-symbols-rounded" style="font-size:14px">point_of_sale</span>Punto de venta</span>
+                </div>
+
+                <p class="mt-5 text-xs text-slate-500" style="font-family:var(--font)">
+                    <span class="material-symbols-rounded fill" style="font-size:13px;vertical-align:middle;margin-right:3px;color:var(--em)">touch_app</span>
+                    Toca cualquier pantalla para ampliarla
+                </p>
+            </div>
+
+            <!-- Screenshots 2×2 con clic para ampliar -->
+            <div class="grid grid-cols-2 gap-3 sm:gap-4">
+
+                <div class="rest-screen"
+                     data-title="Rack de Mesas"
+                     data-desc="Estatus y ocupación en tiempo real"
+                     data-img="Assets/Rack%20Mesas%20Restaurant.png">
+                    <img src="Assets/Rack%20Mesas%20Restaurant.png" alt="Rack de Mesas del Restaurante">
+                    <div class="px-3 py-2.5 border-t border-white/5" style="background:#1e293b">
+                        <p class="text-xs font-semibold text-slate-200" style="font-family:var(--font)">Rack de Mesas</p>
+                        <p class="text-xs text-slate-500" style="font-family:var(--font)">Estatus y ocupación</p>
+                    </div>
+                </div>
+
+                <div class="rest-screen"
+                     data-title="Gestión de Comandas"
+                     data-desc="Panel de captura de pedidos"
+                     data-img="Assets/Dashboard%20para%20agregar%20comandas.png">
+                    <img src="Assets/Dashboard%20para%20agregar%20comandas.png" alt="Dashboard de Comandas">
+                    <div class="px-3 py-2.5 border-t border-white/5" style="background:#1e293b">
+                        <p class="text-xs font-semibold text-slate-200" style="font-family:var(--font)">Gestión de Comandas</p>
+                        <p class="text-xs text-slate-500" style="font-family:var(--font)">Captura de pedidos</p>
+                    </div>
+                </div>
+
+                <div class="rest-screen"
+                     data-title="Diálogo de Pagos"
+                     data-desc="Múltiples formas de pago integradas"
+                     data-img="Assets/Dialogo%20de%20Pagos%20Resturant.png">
+                    <img src="Assets/Dialogo%20de%20Pagos%20Resturant.png" alt="Diálogo de Pagos del Restaurante">
+                    <div class="px-3 py-2.5 border-t border-white/5" style="background:#1e293b">
+                        <p class="text-xs font-semibold text-slate-200" style="font-family:var(--font)">Diálogo de Pagos</p>
+                        <p class="text-xs text-slate-500" style="font-family:var(--font)">Múltiples formas de pago</p>
+                    </div>
+                </div>
+
+                <div class="rest-screen"
+                     data-title="Cuenta Centralizada"
+                     data-desc="Consumos integrados con la cuenta del huésped"
+                     data-img="Assets/Cuenta%20Centralizada%20Restaurant.png">
+                    <img src="Assets/Cuenta%20Centralizada%20Restaurant.png" alt="Cuenta Centralizada del Restaurante">
+                    <div class="px-3 py-2.5 border-t border-white/5" style="background:#1e293b">
+                        <p class="text-xs font-semibold text-slate-200" style="font-family:var(--font)">Cuenta Centralizada</p>
+                        <p class="text-xs text-slate-500" style="font-family:var(--font)">Integrada al huésped</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ══ MODAL DE IMAGEN ══════════════════════════════════════════ -->
+<div id="imgModal" class="img-modal" role="dialog" aria-modal="true" aria-label="Vista ampliada">
+    <div class="img-modal-inner">
+        <img id="modalImg" src="" alt="">
+        <div class="img-modal-bar">
+            <div>
+                <p id="modalTitle" style="display:inline;font-family:var(--font)"></p>
+                <span id="modalDesc" class="sub"></span>
+            </div>
+            <button id="modalClose" class="img-modal-close" aria-label="Cerrar">
+                <span class="material-symbols-rounded" style="font-size:18px">close</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ══ TECNOLOGÍA ════════════════════════════════════════════════ -->
+<section id="tecnologia" class="py-20 sm:py-24 bg-slate-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full opacity-10" style="background:radial-gradient(circle,#6366f1,transparent 70%)"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+            <div>
+                <p class="section-label mb-3" style="color:var(--kr-blue-mid)">Arquitectura de software</p>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight tracking-tight" style="font-family:var(--font-display)">Tecnología de vanguardia, diseñada para evolucionar.</h2>
+                <p class="text-slate-400 mb-7 text-sm sm:text-base leading-relaxed" style="font-family:var(--font)">Endevour no es solo software. Es una arquitectura preparada para los desafíos del futuro hotelero, enfocada en la automatización total y la eliminación de reprocesos.</p>
+                <div class="flex flex-wrap gap-2.5 mb-8">
+                    <span class="tech-chip"><span class="material-symbols-rounded fill" style="font-size:16px;color:var(--kr-blue-mid)">laptop_windows</span>.NET 9 / WPF</span>
+                    <span class="tech-chip"><span class="material-symbols-rounded fill" style="font-size:16px;color:var(--kr-blue-mid)">storage</span>SQL Server</span>
+                    <span class="tech-chip"><span class="material-symbols-rounded fill" style="font-size:16px;color:var(--kr-blue-mid)">devices</span>Multi-terminal</span>
+                    <span class="tech-chip"><span class="material-symbols-rounded fill" style="font-size:16px;color:var(--kr-blue-mid)">receipt_long</span>CFDI Timbrado</span>
+                    <span class="tech-chip"><span class="material-symbols-rounded fill" style="font-size:16px;color:var(--kr-blue-mid)">sync</span>Sincronización en tiempo real</span>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-rounded fill flex-shrink-0" style="font-size:20px;color:var(--em)">check_circle</span>
+                        <span class="text-slate-300 text-sm" style="font-family:var(--font)">Arquitectura modular — activa solo lo que necesitas</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-rounded fill flex-shrink-0" style="font-size:20px;color:var(--em)">check_circle</span>
+                        <span class="text-slate-300 text-sm" style="font-family:var(--font)">Actualizaciones sin interrumpir la operación</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-rounded fill flex-shrink-0" style="font-size:20px;color:var(--em)">check_circle</span>
+                        <span class="text-slate-300 text-sm" style="font-family:var(--font)">Configuración de roles y permisos por propiedad</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="col-span-2 p-5 sm:p-6 rounded-2xl border border-white/10" style="background:rgba(255,255,255,.05)">
+                    <span class="material-symbols-rounded fill mb-3 block" style="font-size:26px;color:#a5b4fc">hub</span>
+                    <p class="font-bold text-white mb-1 text-sm" style="font-family:var(--font)">Ecosistema integrado</p>
+                    <p class="text-slate-400 text-xs leading-relaxed" style="font-family:var(--font)">Hotel, restaurante, facturación y reportes conectados en un solo sistema. Sin integraciones externas ni puntos de falla.</p>
+                </div>
+                <div class="p-4 sm:p-5 rounded-2xl border border-white/10" style="background:rgba(255,255,255,.05)">
+                    <span class="material-symbols-rounded fill mb-2 block" style="font-size:22px;color:var(--am)">bolt</span>
+                    <p class="font-bold text-white mb-1 text-sm" style="font-family:var(--font)">Alto rendimiento</p>
+                    <p class="text-slate-400 text-xs leading-relaxed" style="font-family:var(--font)">Respuesta inmediata en operaciones de alto tráfico.</p>
+                </div>
+                <div class="p-4 sm:p-5 rounded-2xl border border-white/10" style="background:rgba(255,255,255,.05)">
+                    <span class="material-symbols-rounded fill mb-2 block" style="font-size:22px;color:var(--vi)">security</span>
+                    <p class="font-bold text-white mb-1 text-sm" style="font-family:var(--font)">Seguridad por diseño</p>
+                    <p class="text-slate-400 text-xs leading-relaxed" style="font-family:var(--font)">Accesos por rol, auditoría y backups automáticos.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ══ NOSOTROS ══════════════════════════════════════════════════ -->
+<section id="nosotros" class="py-20 sm:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <p class="section-label mb-3">Nuestra empresa</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight" style="font-family:var(--font-display)">Desarrollado por expertos del sector</h2>
+        </div>
+        <div class="max-w-3xl mx-auto text-center mb-12">
+            <p class="text-base sm:text-lg text-slate-500 leading-relaxed" style="font-family:var(--font)">
+                Nacimos de la necesidad real de soluciones hoteleras que se adaptaran a la operación diaria. Con experiencia directa en el sector, definimos la arquitectura y funcionalidad de Endevour para ofrecer una plataforma potente, flexible y moderna.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            <div class="module-card p-6 sm:p-7 text-center">
+                <span class="material-symbols-rounded fill mx-auto mb-3 block" style="font-size:26px;color:var(--in)">verified_user</span>
+                <p class="font-bold text-slate-900 mb-1 text-sm" style="font-family:var(--font)">Seguridad</p>
+                <p class="text-slate-400 text-xs" style="font-family:var(--font)">Accesos, auditoría y respaldo de información.</p>
+            </div>
+            <div class="module-card p-6 sm:p-7 text-center">
+                <span class="material-symbols-rounded fill mx-auto mb-3 block" style="font-size:26px;color:var(--em)">autorenew</span>
+                <p class="font-bold text-slate-900 mb-1 text-sm" style="font-family:var(--font)">Evolución continua</p>
+                <p class="text-slate-400 text-xs" style="font-family:var(--font)">El sistema crece junto con tu operación.</p>
+            </div>
+            <div class="module-card p-6 sm:p-7 text-center">
+                <span class="material-symbols-rounded fill mx-auto mb-3 block" style="font-size:26px;color:var(--am)">support_agent</span>
+                <p class="font-bold text-slate-900 mb-1 text-sm" style="font-family:var(--font)">Soporte especializado</p>
+                <p class="text-slate-400 text-xs" style="font-family:var(--font)">Acompañamiento real de personas que conocen el sistema.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ FOOTER / CONTACTO ══════════════════════════════════════════ -->
+<footer id="contacto" class="py-14 sm:py-16 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-10 sm:gap-12 items-center mb-10 sm:mb-12">
+
+            <div>
+                <div class="flex items-center gap-2.5 mb-4">
+                    <img src="Assets/Endevour-Icon.png" alt="Endevour" class="w-9 h-9 rounded-full shadow-md">
+                    <span class="text-lg sm:text-xl font-extrabold tracking-tighter text-slate-900 uppercase" style="font-family:var(--font-display)">
+                        ENDEVØUR <span class="text-blue-600">PMS</span>
+                    </span>
+                </div>
+                <p class="text-slate-500 text-sm leading-relaxed max-w-sm" style="font-family:var(--font)">
+                    Transformando la gestión hotelera con tecnología intuitiva y soporte especializado. Contacta con nosotros para una demostración personalizada.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6 sm:gap-8">
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900 uppercase tracking-widest border-b border-slate-200 pb-2 mb-4" style="font-family:var(--font)">WhatsApp directo</h4>
+                    <div class="flex flex-col gap-3">
+                        <a href="https://wa.me/523334519183" target="_blank" class="flex items-center gap-3 text-blue-600 hover:text-blue-700 font-bold transition-colors duration-150 group" style="font-family:var(--font)">
+                            <div class="w-9 h-9 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-150 flex-shrink-0">
+                                <i class="fa-brands fa-whatsapp text-lg group-hover:text-white"></i>
+                            </div>
+                            <span class="text-sm">333 451 9183</span>
+                        </a>
+                        <a href="https://wa.me/523319683408" target="_blank" class="flex items-center gap-3 text-blue-600 hover:text-blue-700 font-bold transition-colors duration-150 group" style="font-family:var(--font)">
+                            <div class="w-9 h-9 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-150 flex-shrink-0">
+                                <i class="fa-brands fa-whatsapp text-lg group-hover:text-white"></i>
+                            </div>
+                            <span class="text-sm">331 968 3408</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-slate-900 uppercase tracking-widest border-b border-slate-200 pb-2 mb-4" style="font-family:var(--font)">Correo electrónico</h4>
+                    <a href="mailto:endevoursoftware@gmail.com" class="flex items-center gap-3 text-slate-600 hover:text-blue-600 transition-colors duration-150 group" style="font-family:var(--font)">
+                        <div class="w-9 h-9 bg-slate-100 rounded-xl flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-150 flex-shrink-0">
+                            <span class="material-symbols-rounded text-slate-500 group-hover:text-white" style="font-size:16px">mail</span>
+                        </div>
+                        <span class="text-sm font-semibold break-all">endevoursoftware@gmail.com</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p class="text-slate-400 text-xs text-center sm:text-left" style="font-family:var(--font)">&copy; 2026 Sistema Hotelero Endevour. Todos los derechos reservados.</p>
+            <p class="text-slate-400 text-xs" style="font-family:var(--font)">Desarrollado por <span class="font-semibold text-slate-500">Keorsoft</span></p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
