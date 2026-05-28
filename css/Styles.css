@@ -122,8 +122,8 @@ img { max-width: 100%; height: auto; }
 
 /* Esta es la imagen real, le hacemos zoom superando el 100% */
 .hero-icon-inner {
-  width: 105%; /* Aumenta o disminuye este porcentaje para acercar/alejar el logo */
-  height: 105%;
+  width: 110%; /* Aumenta o disminuye este porcentaje para acercar/alejar el logo */
+  height: 110%;
   object-fit: cover;
 }
 
